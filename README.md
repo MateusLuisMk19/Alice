@@ -2,6 +2,6 @@
  Assistente Virtual
 
 Tecnologia:
-    Reconhecimento de voz
+    Reconhecimento de voz(Google, )
     Sintese de voz
     Inteligenci Artificial
