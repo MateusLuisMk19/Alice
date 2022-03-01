@@ -1,51 +1,54 @@
 # ficheiro prinipal
-
 import speech_recognition as sr
 import pyttsx3
-import datetime
+import fun
 
-# # criar reconhecedor
-# r = sr.Recognizer()
-
-# # abrir o mirofone para ouvir
-# with sr.Microphone() as src:
-#     while True:
-#         audio = r.listen(src) #define microfone como fonte de audio
-
-#         print(r.recognize_google(audio, language='pt'))
-
-# criar reconhecedor
+# criar reconhecedor e a voz do assistente
 audio = sr.Recognizer()
 mq = pyttsx3.init()
 
-
+#mudar as propriedades da voz
 voices = mq.getProperty('voices')
 mq.setProperty("voice", voices[-1].id)
 
-
-# # abrir o mirofone para ouvir
-def exec_cmd():
-
+# abrir o mirofone para ouvir. Devolve o comando (dito pelo utilizador) sem o nome Alice
+def abrir_mic():
     try:
         with sr.Microphone() as src:
             print('Ouvindo...')
-            voz = audio.listen(src)  # define microfone como fonte de audio
+
+            # define microfone como fonte de audio
+            voz = audio.listen(src)
+
             comando = audio.recognize_google(voz, language='pt')
             comando = comando.lower()
-            if 'alice' in comando:
-                comando = comando.replace('alice', '')
 
+            if 'alice' in comando:
+                comando = comando.replace('alice ', '')
     except:
         print('Erro no Microfone')
 
     return comando
 
-def cmd_voz_user(): 
-    comando = exec_cmd()
-    if 'horas' in comando:
-        hora = datetime.datetime.now().strftime('%H:%M')
-        print(hora)
-        mq.say('São ' + hora)
-        mq.runAndWait()
+#recebe o comando e deide a resposta
+def alice_():
+    comando = abrir_mic()
+    print(comando)
+    resposta = ""
 
-cmd_voz_user()
+    if 'horas' in comando:
+        resposta = ('São ' + fun.horas())
+    elif ('quem foi' in comando) or ('quem é' in comando) or ('você conhece' in comando) or ('o que é' in comando):
+        resposta = fun.wiki(comando)
+    #elif ('youtube' in comando):
+
+
+    if(resposta != ""):
+        print(resposta)
+        mq.say(resposta)
+        mq.runAndWait()
+    else:
+        print("")
+
+alice_()
+
