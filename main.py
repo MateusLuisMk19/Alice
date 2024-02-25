@@ -1,10 +1,13 @@
 # ficheiro prinipal
+# carregar variaveis de ambiente
+
 import speech_recognition as sr
 import pyautogui as Aut
 import pyttsx3
+import time
+
 import fun
 import bot
-import time
 
 # criar reconhecedor e a voz do assistente
 audio = sr.Recognizer()
