@@ -1,1 +1,4 @@
-SpeechRecognition 3.8.1
+SpeechRecognition 3.8.1 - pip install SpeechRecognition
+pyttsx3 - pip install pyttsx3
+PyAudio - pip install PyAudio
+setuptools - pip install setuptools

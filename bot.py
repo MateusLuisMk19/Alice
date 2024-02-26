@@ -1,8 +1,15 @@
 import pyautogui as PA
 import time
 
-PA.PAUSE = 2.5
+PA.PAUSE = 1.8
 PA.FAILSAFE = True
+
+
+
+def alert():
+    PA.alert(text='Vou assumir o controle por favor não mexa em nada até terminar.\n Aviso quando terminar', 
+             title='Alice', 
+             button='OK')
 
 def tocar_soundC():
     #abrir o chrome
